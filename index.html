@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link bootstrap , jquery, fonts, fontawesome, anything else necessary -->
+    <!-- Bootstrap link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Font Awesome link -->
+    <script src="https://kit.fontawesome.com/9f539aefd8.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts below -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link custom CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <main class="container-fluid">
+        <div class="row justify-content-center" id="header">
+            Weather Dashboard
+        </div>
+        <div class="row" id="contents">
+            <div class="col-2" id="sidebar">
+                <div class="row" id="search-field">
+                    <h3>Search for a city</h3>
+                    <input type="text" class="container-fluid m-2" id="search-input" placeholder="Search a city here...">
+                </div>
+                <div class="row" id="search-button">
+                    <button type="button" class="btn btn-primary container-fluid m-2">Search</button>
+                </div>
+                <hr/>
+                <button type="button" class="btn btn-secondary container-fluid m-1">New York</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Los Angeles</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Miami</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">San Francisco</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Seattle</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Chicago</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Philadelphia</button> <br>
+                <button type="button" class="btn btn-secondary container-fluid m-1">Boston</button> <br>
+            </div>
+            <div class="col-10" id="display">
+                <div class="row" id="city-display">
+                    <h2 id="chosen-city-name">City Placeholder</h2> <i id="weather-icon"></i><br>
+                    <p id="temp">Temperature: </p> <br>
+                    <p id="wind">Wind: </p> <br>
+                    <p id="humidity">Humidity: </p> <br>
+                    <p id="uv-index">UV Index: </p> <br>
+                    
+                </div>
+                <div class="row" id="five-day">
+                    <h3>5-Day Forecast:</h3> 
+                    <div class="col-2" id="day-0">Date Placeholder MM/DD/YY</div>
+                    <div class="col-2" id="day-1">Date Placeholder MM/DD/YY</div>
+                    <div class="col-2" id="day-2">Date Placeholder MM/DD/YY</div>
+                    <div class="col-2" id="day-3">Date Placeholder MM/DD/YY</div>
+                    <div class="col-2" id="day-4">Date Placeholder MM/DD/YY</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<!-- Link to moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+<!-- Link to jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>    
+    <!-- Link to jQuery UI cdn -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- Link to my own javascript file -->
+    <script src="./assets/js/script.js"></script>
+
+</html>

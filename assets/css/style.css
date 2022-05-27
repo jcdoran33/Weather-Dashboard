@@ -1,0 +1,29 @@
+/* google fonts - CSS rules to specify families: font-family: 'Open Sans', sans-serif; */
+
+/* ELEMENTS */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* CLASSES */
+
+
+/* IDs */
+#header {
+    background-color: lightskyblue;
+    font-size:x-large;
+}
+
+#sidebar {
+    background-color: lightgray;
+}
+
+#city-display {
+    background-color:steelblue;
+}
+
+#five-day {
+    background-color: slategray;
+}
+
+/* PSEUDO and INTERACTIVE */
