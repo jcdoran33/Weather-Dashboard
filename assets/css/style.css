@@ -23,6 +23,10 @@ body {
 }
 
 #five-day {
+    background-color: rgb(176, 176, 176);
+}
+
+#five-day-header {
     background-color: slategray;
 }
 

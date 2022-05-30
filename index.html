@@ -20,11 +20,11 @@
 <body>
     <main class="container-fluid">
         <div class="row justify-content-center" id="header">
-            Weather Dashboard
+           <header> Weather Dashboard </header>
         </div>
         <div class="row" id="contents">
             <div class="col-2" id="sidebar">
-                <div class="row" id="search-field">
+                <div class="row" id="search-area">
                     <h3>Search for a city</h3>
                     <input type="text" class="container-fluid m-2" id="search-input" placeholder="Search a city here...">
                 </div>
@@ -43,15 +43,18 @@
             </div>
             <div class="col-10" id="display">
                 <div class="row" id="city-display">
-                    <h2 id="chosen-city-name">City Placeholder</h2> <i id="weather-icon"></i><br>
-                    <p id="temp">Temperature: </p> <br>
-                    <p id="wind">Wind: </p> <br>
-                    <p id="humidity">Humidity: </p> <br>
-                    <p id="uv-index">UV Index: </p> <br>
-                    
+                    <div class="col-10">
+                        <div class="row"><h2 id="chosen-city-name">Search a city to display forecast</h2> <i id="weather-icon"></i></div>
+                        <div class="row"><p id="temp">Temperature: </p> </div>
+                        <div class="row"><p id="wind">Wind: </p> </div>
+                        <div class="row"><p id="humidity">Humidity: </p> </div>
+                        <div class="row"><p id="uv-index">UV Index: </p> </div>
+                    </div>
+                </div>
+                <div class="row" id="five-day-header">
+                    <h3>5-Day Forecast:</h3> 
                 </div>
                 <div class="row" id="five-day">
-                    <h3>5-Day Forecast:</h3> 
                     <div class="col-2" id="day-0">Date Placeholder MM/DD/YY</div>
                     <div class="col-2" id="day-1">Date Placeholder MM/DD/YY</div>
                     <div class="col-2" id="day-2">Date Placeholder MM/DD/YY</div>
