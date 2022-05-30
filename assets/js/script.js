@@ -54,17 +54,72 @@ function geocodeConversion () {
             console.log(latitude);
             console.log(longitude);
         //testing if it will work nested        
-        var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + weatherApiKey;
+        var weatherApiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=" + weatherApiKey;
             console.log(weatherApiUrl);
-            fetch(weatherApiKey)
+            fetch(weatherApiUrl)
                 .then(function (response){
                     response.json().then(function(data) {
                         console.log(data);
                         var temperature = data.current.temp;
                         var windSpeed = data.current.wind_speed;
                         var humidity = data.current.humidity;
-                        var uvIndex = data.durrent.uvi;
+                        var uvIndex = data.current.uvi;
                         console.log(temperature);
+                        console.log(windSpeed);
+                        console.log(humidity);
+                        console.log(uvIndex);
+                        // now update the display with variable amounts returned form API
+                        $("#temp").text("Temperature: " + temperature + "F");
+                        $("#wind").text("Wind: " + windSpeed +"mph");
+                        $("#humidity").text("Humidity: " + humidity + "%");
+                        $("#uv-index").text("UV Index: " + uvIndex);
+                        // create URL for weather icon
+                        var weatherIconUrl = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + ".png";
+                        console.log(weatherIconUrl);
+                        //then update the img placeholder
+                        $("#weather-icon").css("display", "inline");
+                        $("#weather-icon").attr("src", weatherIconUrl);
+                        //update the 5 day forecast...
+                        var day0Date = moment().format("MM/DD/YY")
+                        var day1Date = moment().add(1, "d").format("MM/DD/YY");
+                        var day2Date = moment().add(2, "d").format("MM/DD/YY");
+                        var day3Date = moment().add(3, "d").format("MM/DD/YY");
+                        var day4Date = moment().add(4, "d").format("MM/DD/YY");
+                        //day 0
+                        $("#day-0-date").text(day0Date);
+                        $("#day-0-icon").css("display","inline");
+                        $("#day-0-icon").attr("src", "http://openweathermap.org/img/wn/" + data.daily[0].weather[0].icon + ".png")
+                        $("#day-0-temp").text("Temp: " + data.daily[0].temp.day + "F");
+                        $("#day-0-wind").text("Wind: " + data.daily[0].wind_speed + "mph");
+                        $("#day-0-hum").text("Humidity: " + data.daily[0].humidity + "%");
+                        //day 1
+                        $("#day-1-date").text(day1Date);
+                        $("#day-1-icon").css("display","inline");
+                        $("#day-1-icon").attr("src", "http://openweathermap.org/img/wn/" + data.daily[1].weather[0].icon + ".png")
+                        $("#day-1-temp").text("Temp: " + data.daily[1].temp.day + "F");
+                        $("#day-1-wind").text("Wind: " + data.daily[1].wind_speed + "mph");
+                        $("#day-1-hum").text("Humidity: " + data.daily[1].humidity + "%");
+                        //day 2
+                        $("#day-2-date").text(day2Date);
+                        $("#day-2-icon").css("display","inline");
+                        $("#day-2-icon").attr("src", "http://openweathermap.org/img/wn/" + data.daily[2].weather[0].icon + ".png")
+                        $("#day-2-temp").text("Temp: " + data.daily[2].temp.day + "F");
+                        $("#day-2-wind").text("Wind: " + data.daily[2].wind_speed + "mph");
+                        $("#day-2-hum").text("Humidity: " + data.daily[2].humidity + "%");
+                        //day 3
+                        $("#day-3-date").text(day3Date);
+                        $("#day-3-icon").css("display","inline");
+                        $("#day-3-icon").attr("src", "http://openweathermap.org/img/wn/" + data.daily[3].weather[0].icon + ".png")
+                        $("#day-3-temp").text("Temp: " + data.daily[3].temp.day + "F");
+                        $("#day-3-wind").text("Wind: " + data.daily[3].wind_speed + "mph");
+                        $("#day-3-hum").text("Humidity: " + data.daily[3].humidity + "%");
+                        //day 4
+                        $("#day-4-date").text(day4Date);
+                        $("#day-4-icon").css("display","inline");
+                        $("#day-4-icon").attr("src", "http://openweathermap.org/img/wn/" + data.daily[4].weather[0].icon + ".png")
+                        $("#day-4-temp").text("Temp: " + data.daily[4].temp.day + "F");
+                        $("#day-4-wind").text("Wind: " + data.daily[4].wind_speed + "mph");
+                        $("#day-4-hum").text("Humidity: " + data.daily[4].humidity + "%");
 
                     })
                 })
@@ -83,7 +138,7 @@ function geocodeConversion () {
 function apiFetch () {
     console.log("apiFetch function launched");
     //create a new URL to feed to Open Weather API, absed on lat and longitude
-    console.log(latitude);
+    
 }
 
 //maybe combine these all into one? or at least two of them

@@ -5,6 +5,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+img {
+    display: none;
+}
+
 /* CLASSES */
 
 
