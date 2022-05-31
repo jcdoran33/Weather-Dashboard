@@ -13,12 +13,26 @@ var weatherApiKey = "ccd6639ee8a0a85c2ab586d91cfb5a8a";
 
 var googleMapsGeocodeApiLink = "https://maps.googleapis.com/maps/api/geocode/json?address="
 
-// need to reference two apis, the one call weather api, AND
-// another apis that will go fetch a city's lat and lon based on a text city name
-//maybe google maps api?
+
+// function getSearchValue () {
+//     var city = search.value;
+//     geocodeConversion(city)
+//     updateDisplay(city)
+// } 
+
+// function updateDisplay(city) {
+//     console.log(city)
+// }
+
+// .then ( (date => {
+//     apiCall(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
+// })
+
+// function apiCall(lat, lon) {
+//     var apiUrl = `https://${lat}${lon}hljfgjkwfh`
+// }
 
 
-// create an IF conditional statement, that will apply an accurate weather icon based on weather criteria, in the 5 day forecast
 
 function runSearch () {
     console.log("runSearch function launched")
@@ -31,6 +45,18 @@ function runSearch () {
     geocodeConversion();
     updateDisplay();
 }
+
+
+// function cleanFetch () {
+//     var apiURL = ''
+//     fetch(apiURL)
+//         .then(function(res) {
+//             return res.json();
+//         })
+//         .then(function(data) {
+//             console.log(data);
+//         })
+// }
 
 //function that converts the inputted city state name to latitude and longitude coordinates
 //may need to come back and remove the , from the user search input. Can check if there are issues with API
@@ -47,7 +73,8 @@ function geocodeConversion () {
     fetch(completeUrlString)
         .then(function (response){
                 console.log(response);
-                response.json().then(function(data) {
+                response.json()
+        .then(function(data) {
             console.log(data);
             var latitude = data.results[0].geometry.location.lat;
             var longitude = data.results[0].geometry.location.lng;
@@ -149,22 +176,34 @@ function apiFetch () {
     
 }
 
-//maybe combine these all into one? or at least two of them
+
 //function that handles updating the display with the data fetched from weather api
+//
 function updateDisplay () {
     var userSearch = searchTextField.value;
     $(chosenCity).text("Weather for " + userSearch);
         console.log(userSearch);
+        
     // add process that saves search to local storage, create another function that will launch page with anything in storage (for loop thru storage)
     //add user search to array
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    console.log("Search History: " + searchHistory)
     searchHistory.push(userSearch);
 
-    localStorage.setItem("searchHistory", JSON.stringify(userSearch));
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     //add process that appends a button to the sidebar
-    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + userSearch + '</button> <br></br>');
+    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + userSearch + '</button>');
+}
+
+function updateHistory () {
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    //add process that appends a button to the sidebar
+    for (var i = 0; i < searchHistory.length; i++) {
+        $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + searchHistory[i] + '</button>');
+    }
+    
 }
 
 //add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
-
+updateHistory();
 $("#search-button").click(runSearch);
