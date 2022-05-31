@@ -73,6 +73,14 @@ function geocodeConversion () {
                         $("#wind").text("Wind: " + windSpeed +"mph");
                         $("#humidity").text("Humidity: " + humidity + "%");
                         $("#uv-index").text("UV Index: " + uvIndex);
+                        // add if condition to color code UV Index 
+                        if (uvIndex <=3) {
+                            $("#uv-index").css("background-color","green")
+                        }else if (uvIndex <=7) {
+                            $("#uv-index").css("background-color","yellow")
+                        } else {
+                            $("#uv-index").css("background-color","red")
+                        };
                         // create URL for weather icon
                         var weatherIconUrl = "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + ".png";
                         console.log(weatherIconUrl);
@@ -147,6 +155,16 @@ function updateDisplay () {
     var userSearch = searchTextField.value;
     $(chosenCity).text("Weather for " + userSearch);
         console.log(userSearch);
+    // add process that saves search to local storage, create another function that will launch page with anything in storage (for loop thru storage)
+    //add user search to array
+    var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    searchHistory.push(userSearch);
+
+    localStorage.setItem("searchHistory", JSON.stringify(userSearch));
+    //add process that appends a button to the sidebar
+    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + userSearch + '</button> <br></br>');
 }
+
+//add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
 
 $("#search-button").click(runSearch);
