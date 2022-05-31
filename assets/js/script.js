@@ -13,6 +13,7 @@ var weatherApiKey = "ccd6639ee8a0a85c2ab586d91cfb5a8a";
 
 var googleMapsGeocodeApiLink = "https://maps.googleapis.com/maps/api/geocode/json?address="
 
+var todaysDate = moment().format("MM/DD/YY");
 
 // function getSearchValue () {
 //     var city = search.value;
@@ -181,7 +182,7 @@ function apiFetch () {
 //
 function updateDisplay () {
     var userSearch = searchTextField.value;
-    $(chosenCity).text("Weather for " + userSearch);
+    $(chosenCity).text("Weather for " + userSearch + " on " + todaysDate);
         console.log(userSearch);
         
     // add process that saves search to local storage, create another function that will launch page with anything in storage (for loop thru storage)
@@ -192,18 +193,28 @@ function updateDisplay () {
 
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     //add process that appends a button to the sidebar
-    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + userSearch + '</button>');
+    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1" id="search-history">' + userSearch + '</button>');
 }
 
 function updateHistory () {
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     //add process that appends a button to the sidebar
     for (var i = 0; i < searchHistory.length; i++) {
-        $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1">' + searchHistory[i] + '</button>');
+        $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1" id="search-history">' + searchHistory[i] + '</button>');
     }
     
 }
 
+// function to be run to load the weather for the city in the history button that was clicked on
+// function savedSearchLoad (event) {
+//     console.log("savedSearchLoad has been launched!");
+//     console.log(event.target.value);
+//     geocodeConversion(event.target.value);
+// }
+
 //add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
+// $("#search-history").on("click", savedSearchLoad);
+
 updateHistory();
+
 $("#search-button").click(runSearch);
