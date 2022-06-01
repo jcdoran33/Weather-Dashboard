@@ -3,7 +3,7 @@
 /* ELEMENTS */
 body {
     font-family: 'Open Sans', sans-serif;
-    background-color: ;
+    background-color: skyblue;
 }
 
 img {
@@ -25,6 +25,7 @@ img {
 
 #city-display {
     background-color:steelblue;
+    font-size:large;
 }
 
 #five-day {

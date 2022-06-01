@@ -129,12 +129,7 @@ function geocodeConversion() {
 
                 })
         })
-    // apiFetch();
-    //have to do this within this function since, lat anf long variables are local
-
-
-
-}
+};
 
 
 //function that handles updating the display with the data fetched from weather api, and sets the search into local storage
@@ -166,9 +161,7 @@ function updateHistory() {
 // run updateHistory on page loading
 updateHistory();
 
-//add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
-
-//listener for click on a search history button
+//event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
 $(document).ready(
     //need to fix this ID - maybe make a div container for all the search histories?
     $("#sidebar").click(function (event) {
@@ -181,7 +174,6 @@ $(document).ready(
             //launch runSearch again
             runSearch();
         };
-
     })
 );
 //click listener for search button
