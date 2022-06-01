@@ -176,7 +176,7 @@ $(document).ready(
         var valueClicked = event.target.id;
         // console.log(valueClicked)
         //fills the search field with the contents of the clicked button - IF what was clicked on was a search history button
-        if (valueClicked !== "search-area" && valueClicked !== "search-input" && valueClicked !== "search-button") {
+        if (valueClicked !== "search-area" && valueClicked !== "search-input" && valueClicked !== "search-button" && valueClicked !== "sidebar") {
             searchTextField.value = event.target.id
             //launch runSearch again
             runSearch();
