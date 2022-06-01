@@ -11,53 +11,27 @@ var userSearch;
 
 var weatherApiKey = "ccd6639ee8a0a85c2ab586d91cfb5a8a";
 
-var googleMapsGeocodeApiLink = "https://maps.googleapis.com/maps/api/geocode/json?address="
+var googleMapsGeocodeApiLink = "https://maps.googleapis.com/maps/api/geocode/json?address=";
 
 var todaysDate = moment().format("MM/DD/YY");
 
-// function getSearchValue () {
-//     var city = search.value;
-//     geocodeConversion(city)
-//     updateDisplay(city)
-// } 
-
-// function updateDisplay(city) {
-//     console.log(city)
-// }
-
-// .then ( (date => {
-//     apiCall(data.results[0].geometry.location.lat, data.results[0].geometry.location.lng)
-// })
-
-// function apiCall(lat, lon) {
-//     var apiUrl = `https://${lat}${lon}hljfgjkwfh`
-// }
-
-
 
 function runSearch () {
-    console.log("runSearch function launched")
+        console.log("runSearch function launched")
+        if (searchTextField.value) {
     var userSearch = searchTextField.value;
-    console.log(userSearch);
-    console.log(typeof userSearch); // returns a string
+        console.log(userSearch);
+        console.log(typeof userSearch); // returns a string
     //update the displayed city name
     // $(chosenCity).text("Weather for " + userSearch); -- commented this out to move to update display function, reactivate if you combine
     //fetch weather from API and display in the display area
     geocodeConversion();
     updateDisplay();
+        } else {
+            console.log("Error: No search input")
+        }
 }
 
-
-// function cleanFetch () {
-//     var apiURL = ''
-//     fetch(apiURL)
-//         .then(function(res) {
-//             return res.json();
-//         })
-//         .then(function(data) {
-//             console.log(data);
-//         })
-// }
 
 //function that converts the inputted city state name to latitude and longitude coordinates
 //may need to come back and remove the , from the user search input. Can check if there are issues with API
@@ -193,14 +167,14 @@ function updateDisplay () {
 
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
     //add process that appends a button to the sidebar
-    $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1" id="search-history">' + userSearch + '</button>');
+    $("#sidebar").append('<button type="button" class="btn btn-secondary container-fluid m-1" id="' + userSearch + '">' + userSearch + '</button>');
 }
 
 function updateHistory () {
     var searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     //add process that appends a button to the sidebar
     for (var i = 0; i < searchHistory.length; i++) {
-        $("#sidebar").append('<button type=button" class="btn btn-secondary container-fluid m-1" id="search-history">' + searchHistory[i] + '</button>');
+        $("#sidebar").append('<button type="button" class="btn btn-secondary container-fluid m-1" id="'+searchHistory[i]+'">' + searchHistory[i] + '</button>');
     }
     
 }
@@ -212,9 +186,35 @@ function updateHistory () {
 //     geocodeConversion(event.target.value);
 // }
 
-//add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
-// $("#search-history").on("click", savedSearchLoad);
-
+// run updateHistory on page loading
 updateHistory();
+
+//add event listener for a click on any of the historical searches in the sidebar, take the text value of that tag and run the runSearch program with it
+// try to listen for the parent elemtn instead?
+//might have to add to loops, so each time that a new search happens or loading old search, a variable is created for that button using query selectr or getelemtn by id
+//test here to see if other click listeners are working
+$("#header").click(function() {
+    console.log("You clicked the header")
+});
+
+//listener for click on a search history button
+$(document).ready(
+    //need to fix this ID - maybe make a div container for all the search histories?
+    $("#sidebar").click(function(event){
+        console.log("You clicked within the sidebar");
+        var valueClicked = event.target.id;
+            console.log(valueClicked)
+            //fills the search field with the contents of the clicked button - if what was clicked on was a search history button
+        if (valueClicked !== "search-area" && valueClicked !== "search-input" && valueClicked !== "search-button") {
+            searchTextField.value = event.target.id
+            console.log("DOUBLE RUN of runSearch")
+            // geocodeConversion();
+            //trial - replace with run search - if doesnt work, then just copy this below: $(chosenCity).text("Weather for " + userSearch + " on " + todaysDate);
+            runSearch();
+            // updateDisplay(valueClicked);
+        };
+        
+    })
+);
 
 $("#search-button").click(runSearch);
